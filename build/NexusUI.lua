@@ -1,10 +1,12 @@
 -- NexusUI v1.0.0 | https://github.com/NexusUI1 | MIT License
 -- Bundled build. Do not edit manually - rebuild with tools/build.py
 
-local __MODULES = {}
 local __CACHE = {}
+local __MODULES = {}
 
-__MODULES["Core.Signal"] = [[local Signal = {}
+do --[[ Core.Signal ]]
+__MODULES["Core.Signal"] = function(__require)
+local Signal = {}
 Signal.__index = Signal
 
 Signal.GlobalConnections = 0
@@ -137,8 +139,11 @@ function Signal:Destroy()
 end
 
 return Signal
-]]
-__MODULES["Core.Maid"] = [[local Maid = {}
+end
+end
+do --[[ Core.Maid ]]
+__MODULES["Core.Maid"] = function(__require)
+local Maid = {}
 Maid.__index = Maid
 
 Maid.TotalTasks = 0
@@ -247,8 +252,11 @@ function Maid:Destroy()
 end
 
 return Maid
-]]
-__MODULES["Core.Config"] = [[local Config = {
+end
+end
+do --[[ Core.Config ]]
+__MODULES["Core.Config"] = function(__require)
+local Config = {
 	Version = "1.0.0",
 	Codename = "Nexus",
 	Author = "NexusUI Team",
@@ -319,8 +327,11 @@ function Config.IsPerformanceMode()
 end
 
 return Config
-]]
-__MODULES["Core.Device"] = [[local RunService = game:GetService("RunService")
+end
+end
+do --[[ Core.Device ]]
+__MODULES["Core.Device"] = function(__require)
+local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Signal = __require("Core.Signal")
@@ -459,8 +470,11 @@ end
 Device.Detect()
 
 return Device
-]]
-__MODULES["Core.Icons"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Core.Icons ]]
+__MODULES["Core.Icons"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 
 local Icons = {}
 
@@ -570,8 +584,11 @@ Icons.List = function()
 end
 
 return Icons
-]]
-__MODULES["Core.Input"] = [[local UserInputService = game:GetService("UserInputService")
+end
+end
+do --[[ Core.Input ]]
+__MODULES["Core.Input"] = function(__require)
+local UserInputService = game:GetService("UserInputService")
 local HttpService = game:GetService("HttpService")
 
 local Maid = __require("Core.Maid")
@@ -914,8 +931,11 @@ pcall(function()
 end)
 
 return Input
-]]
-__MODULES["Animation.Easing"] = [[local Easing = {}
+end
+end
+do --[[ Animation.Easing ]]
+__MODULES["Animation.Easing"] = function(__require)
+local Easing = {}
 
 Easing.Linear = function(t)
 	return t
@@ -1066,8 +1086,11 @@ Easing.Names = {
 }
 
 return Easing
-]]
-__MODULES["Animation.Spring"] = [[local Easing = __require("Animation.Easing")
+end
+end
+do --[[ Animation.Spring ]]
+__MODULES["Animation.Spring"] = function(__require)
+local Easing = __require("Animation.Easing")
 
 local Spring = {}
 Spring.__index = Spring
@@ -1232,8 +1255,11 @@ end
 Spring.Easing = Easing
 
 return Spring
-]]
-__MODULES["Animation.Animator"] = [[local TweenService = game:GetService("TweenService")
+end
+end
+do --[[ Animation.Animator ]]
+__MODULES["Animation.Animator"] = function(__require)
+local TweenService = game:GetService("TweenService")
 
 local Easing = __require("Animation.Easing")
 
@@ -1418,8 +1444,11 @@ end
 Animator.Easing = Easing
 
 return Animator
-]]
-__MODULES["Theme.ThemeManager"] = [[local ThemeManager = {}
+end
+end
+do --[[ Theme.ThemeManager ]]
+__MODULES["Theme.ThemeManager"] = function(__require)
+local ThemeManager = {}
 ThemeManager.__index = ThemeManager
 
 local Tokens = __require("Theme.DefaultTheme")
@@ -1522,8 +1551,11 @@ function ThemeManager.IsDark(theme)
 end
 
 return ThemeManager
-]]
-__MODULES["Theme.DefaultTheme"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Theme.DefaultTheme ]]
+__MODULES["Theme.DefaultTheme"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 
 local DefaultTheme = {}
 
@@ -2023,8 +2055,11 @@ function DefaultTheme.Apply(t)
 end
 
 return DefaultTheme
-]]
-__MODULES["Utilities.UIUtils"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Utilities.UIUtils ]]
+__MODULES["Utilities.UIUtils"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 
 local UIUtils = {}
 
@@ -2223,8 +2258,11 @@ function UIUtils.Create(className, props, children)
 end
 
 return UIUtils
-]]
-__MODULES["Utilities.Sound"] = [[local SoundService = game:GetService("SoundService")
+end
+end
+do --[[ Utilities.Sound ]]
+__MODULES["Utilities.Sound"] = function(__require)
+local SoundService = game:GetService("SoundService")
 
 local Config = __require("Core.Config")
 
@@ -2312,8 +2350,11 @@ Sound.Toggle = function() return Sound.Play("Toggle", nil, 1.15) end
 Sound.Pop = function() return Sound.Play("Pop", nil, 1.3) end
 
 return Sound
-]]
-__MODULES["Core.Component"] = [[local Signal = __require("Core.Signal")
+end
+end
+do --[[ Core.Component ]]
+__MODULES["Core.Component"] = function(__require)
+local Signal = __require("Core.Signal")
 local Maid = __require("Core.Maid")
 
 local Component = {}
@@ -2469,8 +2510,11 @@ function Component.Count()
 end
 
 return Component
-]]
-__MODULES["Components.BaseComponent"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.BaseComponent ]]
+__MODULES["Components.BaseComponent"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
 local UIUtils = __require("Utilities.UIUtils")
@@ -2681,8 +2725,11 @@ BaseComponent.IsBaseComponent = function(obj)
 end
 
 return BaseComponent
-]]
-__MODULES["Components.Label"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Label ]]
+__MODULES["Components.Label"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -2796,8 +2843,11 @@ function Label:Destroy()
 end
 
 return Label
-]]
-__MODULES["Components.Paragraph"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Paragraph ]]
+__MODULES["Components.Paragraph"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -2940,8 +2990,11 @@ function Paragraph:Destroy()
 end
 
 return Paragraph
-]]
-__MODULES["Components.Divider"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Divider ]]
+__MODULES["Components.Divider"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -3072,8 +3125,11 @@ function Divider:Destroy()
 end
 
 return Divider
-]]
-__MODULES["Components.Badge"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Badge ]]
+__MODULES["Components.Badge"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -3210,8 +3266,11 @@ function Badge:Destroy()
 end
 
 return Badge
-]]
-__MODULES["Components.Button"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Button ]]
+__MODULES["Components.Button"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -3544,8 +3603,11 @@ function Button:Destroy()
 end
 
 return Button
-]]
-__MODULES["Components.Toggle"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Toggle ]]
+__MODULES["Components.Toggle"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -3757,8 +3819,11 @@ function Toggle:Destroy()
 end
 
 return Toggle
-]]
-__MODULES["Components.Checkbox"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Checkbox ]]
+__MODULES["Components.Checkbox"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -3950,8 +4015,11 @@ function Checkbox:Destroy()
 end
 
 return Checkbox
-]]
-__MODULES["Components.Slider"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Slider ]]
+__MODULES["Components.Slider"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -4262,8 +4330,11 @@ function Slider:Destroy()
 end
 
 return Slider
-]]
-__MODULES["Components.Dropdown"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Dropdown ]]
+__MODULES["Components.Dropdown"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -4623,8 +4694,11 @@ function Dropdown:Destroy()
 end
 
 return Dropdown
-]]
-__MODULES["Components.MultiDropdown"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.MultiDropdown ]]
+__MODULES["Components.MultiDropdown"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -5007,8 +5081,11 @@ function MultiDropdown:Destroy()
 end
 
 return MultiDropdown
-]]
-__MODULES["Components.TextBox"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.TextBox ]]
+__MODULES["Components.TextBox"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -5219,8 +5296,11 @@ function TextBox:Destroy()
 end
 
 return TextBox
-]]
-__MODULES["Components.SearchBox"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.SearchBox ]]
+__MODULES["Components.SearchBox"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -5451,8 +5531,11 @@ function SearchBox:Destroy()
 end
 
 return SearchBox
-]]
-__MODULES["Components.Keybind"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Keybind ]]
+__MODULES["Components.Keybind"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -5731,8 +5814,11 @@ function Keybind:Destroy()
 end
 
 return Keybind
-]]
-__MODULES["Components.ColorPicker"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.ColorPicker ]]
+__MODULES["Components.ColorPicker"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -6243,8 +6329,11 @@ function ColorPicker:Destroy()
 end
 
 return ColorPicker
-]]
-__MODULES["Components.ProgressBar"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.ProgressBar ]]
+__MODULES["Components.ProgressBar"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -6457,8 +6546,11 @@ function ProgressBar:Destroy()
 end
 
 return ProgressBar
-]]
-__MODULES["Components.LoadingIndicator"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.LoadingIndicator ]]
+__MODULES["Components.LoadingIndicator"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -6752,8 +6844,11 @@ function LoadingIndicator:Destroy()
 end
 
 return LoadingIndicator
-]]
-__MODULES["Components.Card"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Card ]]
+__MODULES["Components.Card"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -7006,8 +7101,11 @@ function Card:Destroy()
 end
 
 return Card
-]]
-__MODULES["Components.Image"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Image ]]
+__MODULES["Components.Image"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -7172,8 +7270,11 @@ function Image:Destroy()
 end
 
 return Image
-]]
-__MODULES["Components.Toast"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Toast ]]
+__MODULES["Components.Toast"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -7399,8 +7500,11 @@ function Toast:Destroy()
 end
 
 return Toast
-]]
-__MODULES["Components.Tooltip"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Tooltip ]]
+__MODULES["Components.Tooltip"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -7652,8 +7756,11 @@ Tooltip.HideAll = function()
 end
 
 return Tooltip
-]]
-__MODULES["Components.ContextMenu"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.ContextMenu ]]
+__MODULES["Components.ContextMenu"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -7953,8 +8060,11 @@ ContextMenu.CloseAll = function()
 end
 
 return ContextMenu
-]]
-__MODULES["Components.Modal"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Modal ]]
+__MODULES["Components.Modal"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -8292,8 +8402,11 @@ function Modal:Destroy()
 end
 
 return Modal
-]]
-__MODULES["Components.Tab"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Tab ]]
+__MODULES["Components.Tab"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -8725,8 +8838,11 @@ function Tab:Destroy()
 end
 
 return Tab
-]]
-__MODULES["Components.Section"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Section ]]
+__MODULES["Components.Section"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -9142,8 +9258,11 @@ function Section:Destroy()
 end
 
 return Section
-]]
-__MODULES["Components.Window"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.Window ]]
+__MODULES["Components.Window"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -9869,8 +9988,11 @@ function Window:Destroy()
 end
 
 return Window
-]]
-__MODULES["Components.QuickActions"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Components.QuickActions ]]
+__MODULES["Components.QuickActions"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -10222,8 +10344,11 @@ function QuickActions:Destroy()
 end
 
 return QuickActions
-]]
-__MODULES["Services.NotificationSystem"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Services.NotificationSystem ]]
+__MODULES["Services.NotificationSystem"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
 local UIUtils = __require("Utilities.UIUtils")
@@ -10613,8 +10738,11 @@ end
 NotificationSystem.Notify = NotificationSystem.Notify
 
 return NotificationSystem
-]]
-__MODULES["Services.CommandPalette"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Services.CommandPalette ]]
+__MODULES["Services.CommandPalette"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local Signal = __require("Core.Signal")
 
 local CommandPalette = {}
@@ -11045,8 +11173,11 @@ function CommandPalette:Destroy()
 end
 
 return CommandPalette
-]]
-__MODULES["Services.Preset"] = [[local HttpService = game:GetService("HttpService")
+end
+end
+do --[[ Services.Preset ]]
+__MODULES["Services.Preset"] = function(__require)
+local HttpService = game:GetService("HttpService")
 
 local Preset = {}
 Preset.__index = Preset
@@ -11311,8 +11442,11 @@ function Preset:GetPreset(name)
 end
 
 return Preset
-]]
-__MODULES["Services.Debug"] = [[local Debug = {}
+end
+end
+do --[[ Services.Debug ]]
+__MODULES["Services.Debug"] = function(__require)
+local Debug = {}
 Debug.__index = Debug
 
 Debug.Enabled = false
@@ -11585,8 +11719,11 @@ function Debug:Destroy()
 end
 
 return Debug
-]]
-__MODULES["Services.Fluent"] = [[local Fluent = {}
+end
+end
+do --[[ Services.Fluent ]]
+__MODULES["Services.Fluent"] = function(__require)
+local Fluent = {}
 Fluent.__index = Fluent
 
 local function wrap(obj, methodNames)
@@ -11641,8 +11778,11 @@ Fluent.Methods = {
 }
 
 return Fluent
-]]
-__MODULES["Services.Welcome"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Services.Welcome ]]
+__MODULES["Services.Welcome"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local BaseComponent = __require("Components.BaseComponent")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
@@ -11844,8 +11984,11 @@ function Welcome:Destroy()
 end
 
 return Welcome
-]]
-__MODULES["Services.KeySystem"] = [[local ThemeManager = __require("Theme.ThemeManager")
+end
+end
+do --[[ Services.KeySystem ]]
+__MODULES["Services.KeySystem"] = function(__require)
+local ThemeManager = __require("Theme.ThemeManager")
 local Maid = __require("Core.Maid")
 local Signal = __require("Core.Signal")
 local UIUtils = __require("Utilities.UIUtils")
@@ -12229,8 +12372,11 @@ function KeySystem:Destroy()
 end
 
 return KeySystem
-]]
-__MODULES["Demo.Demo"] = [[local NexusUI = __require("")
+end
+end
+do --[[ Demo.Demo ]]
+__MODULES["Demo.Demo"] = function(__require)
+local NexusUI = __require("init")
 local Icons = __require("Core.Icons")
 
 local Demo = {}
@@ -12741,8 +12887,11 @@ function Demo:Run()
 end
 
 return Demo
-]]
-__MODULES["init"] = [[local Config = __require("Core.Config")
+end
+end
+do --[[ init ]]
+__MODULES["init"] = function(__require)
+local Config = __require("Core.Config")
 local ThemeManager = __require("Theme.ThemeManager")
 
 local NexusUI = {}
@@ -12936,24 +13085,21 @@ end
 applyDefaultThemes()
 
 return NexusUI
-]]
+end
+end
 
 local function __require(key)
-	if __CACHE[key] then
-		return __CACHE[key]
+	local cached = __CACHE[key]
+	if cached ~= nil then
+		return cached
 	end
 
-	local source = __MODULES[key]
-	if not source then
+	local loader = __MODULES[key]
+	if not loader then
 		error("[NexusUI] Module not found: " .. tostring(key), 2)
 	end
 
-	local fn, loadErr = loadstring(source, "=" .. key)
-	if not fn then
-		error("[NexusUI] Failed to load module " .. tostring(key) .. ": " .. tostring(loadErr), 2)
-	end
-
-	local module = fn()
+	local module = loader(__require)
 	__CACHE[key] = module
 
 	return module
